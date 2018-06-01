@@ -74,7 +74,7 @@ def main():
         total_score = sum(c.score for c in candidates)
         chosen = random.randint(0, int(total_score) - 1)
         for i, c in enumerate(candidates):
-            if chosen <= c.score:
+            if chosen < c.score:
                 whitelist.append(c)
                 candidates.pop(i)
                 break
