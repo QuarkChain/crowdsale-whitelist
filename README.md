@@ -9,5 +9,6 @@
 The lottery can be run as following:
 
 ```python
-python3 whitelist.py <blockhash>
+# Use blockhash at height 525485.
+python3 whitelist.py 000000000000000000139dba4d2169f991f9867dd3e996f5e0a86f1ae985308f
 ```
