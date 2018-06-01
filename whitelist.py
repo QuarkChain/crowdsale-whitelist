@@ -69,16 +69,10 @@ def main():
     assert len(candidates) > WHITELIST_NUM + WHITELSIT_SUBSTITUTE_NUM
     # Make sure the order is deterministic so it's reproducible.
     candidates.sort(key=lambda c: c.key)
-    for _ in range(WHITELIST_NUM + WHITELSIT_SUBSTITUTE_NUM):
-        # Sampling. The higher the score, the greater the chance to get picked.
-        total_score = sum(c.score for c in candidates)
-        chosen = random.random() * total_score
-        for i, c in enumerate(candidates):
-            if chosen <= c.score:
-                whitelist.append(c)
-                candidates.pop(i)
-                break
-            chosen -= c.score
+
+    weights = [c.score for c in candidates]
+    k = WHITELIST_NUM + WHITELSIT_SUBSTITUTE_NUM
+    whitelist = random.choices(candidates, weights=weights, k=k)
 
     assert len(whitelist) == WHITELIST_NUM + WHITELSIT_SUBSTITUTE_NUM
     for i, c in enumerate(whitelist):
