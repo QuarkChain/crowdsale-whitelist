@@ -72,7 +72,7 @@ def main():
     for _ in range(WHITELIST_NUM + WHITELSIT_SUBSTITUTE_NUM):
         # Sampling. The higher the score, the greater the chance to get picked.
         total_score = sum(c.score for c in candidates)
-        chosen = random.randint(0, int(total_score) - 1)
+        chosen = random.random() * total_score
         for i, c in enumerate(candidates):
             if chosen <= c.score:
                 whitelist.append(c)
